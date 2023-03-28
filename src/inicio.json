@@ -1,0 +1,39 @@
+[
+  {
+    "id": 1,
+    "horario":"1h",
+    "imagen":"img-1.png",
+    "alt":"imagen1",
+    "dmx":"Dante #3353",
+    "funcion":"Funcionamiento",
+    "texto":"Hola, no entiendo que tengo que hacer cuando llego  a la pantalla..."
+  },
+  {
+    "id": 2,
+    "horario":"2h",
+    "imagen":"img-2.png",
+    "alt":"imagen1",
+    "dmx":"Carlos #3353",
+    "funcion":"Funcionamiento",
+    "texto":"Hola, no entiendo que tengo que hacer cuando llego  a la pantalla..."
+  },
+  {
+    "id": 3,
+    "horario":"4h",
+    "imagen":"img-3.png",
+    "alt":"imagen1",
+    "dmx":"Pedro #3353",
+    "funcion":"Funcionamiento",
+    "texto":"Hola, no entiendo que tengo que hacer cuando llego  a la pantalla..."
+  },
+  {
+    "id": 4,
+    "horario":"2h",
+    "imagen":"img-2.png",
+    "alt":"imagen1",
+    "dmx":"Juan #3353",
+    "funcion":"Funcionamiento",
+    "texto":"Hola, no entiendo que tengo que hacer cuando llego  a la pantalla..."
+  }
+
+]
