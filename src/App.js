@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 
 import './App.css';
+import Informacion from "./components/informacion";
 
 
 
@@ -25,6 +26,7 @@ function App() {
     <Route path="/atencion" element= {<Atencion/>} />
     <Route path="/chat" element= {<Chat/>} />
     <Route path="/chat/:userid" element= {<Chat/>} />
+    
   </Routes>
   </main> 
   </div>

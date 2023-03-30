@@ -3,42 +3,26 @@ import { Link, useParams } from "react-router-dom";
 import inicio from "../inicio.json";
 import {ArrowLeftIcon,InformationCircleIcon, EllipsisVerticalIcon,PlusIcon, EnvelopeIcon, PaperAirplaneIcon}from '@heroicons/react/24/solid';
 import Informacion from "../components/informacion";
-import { useEffect } from "react";
+
 
 function Chat () {
     const { userid } = useParams();
-    console.log('userparams: ', userid)
-    const [user, setUser]= useState();  
+    const [user, setUser]= useState([]);  
 
-    useEffect(() => {
-        const usuario = inicio.find(user => user.id == userid)
-        setUser({
-            ...user,
-            usuario
-        });
+    const chatUsuarios = (userid) => {
     
-    }, [userid])
-    /*
-    */
-/*
-const chatUsuarios = (userid) => {
-    //const usuario = inicio.find(user => user.id === userid)
-    const usuario = inicio.find((user) => {
-        console.log("%%%%");
-        console.log("userid: ",  userid);
-        console.log("user: ",  user.id);
-        console.log("%%%%");
-        return user.id === userid 
-    }) 
+    const usuario = inicio.find(user => user.id == userid)
     setUser({
       ...user,
       usuario
     });
-
+    console.log("%%%%");
+    console.log("userid: ",  userid);
+    console.log("user: ",  user);
+    console.log("%%%%");
 };
 chatUsuarios(userid);
-*/
-    return (
+ return (
     
      <div class="w-screen h-screen bg-[#333F51] box-border box-content" >  
      <header class="w-full h-20 bg-[#2A3342] flex justify-between p-2  sticky top-0 flex space-x-4 flex-wrap shadow-[#00000040] shadow-xl">
@@ -52,10 +36,9 @@ chatUsuarios(userid);
                 <div class="flex gap-4">
                   <div class="bg-[#333E50]  rounded-lg pt-3 pb-3 flex ">
                         <button id="dropdownMenuIcon2" data-dropdown-toggle="dropdown" class="text-fuchsia-800 rounded-lg px-3" type="button"> 
-                            <InformationCircleIcon className="h-8 w-8 " alt="info"/>
+                            <InformationCircleIcon  className="h-8 w-8 " alt="info"/>
                             <section>
                                 <div>
-
                                     <Informacion
                                            key={user.id}
                                            imagen={user.imagen}
