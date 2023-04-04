@@ -8,12 +8,8 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-
 import './App.css';
 import Informacion from "./components/informacion";
-
-
-
 
 function App() {
   return (
@@ -26,6 +22,7 @@ function App() {
     <Route path="/atencion" element= {<Atencion/>} />
     <Route path="/chat" element= {<Chat/>} />
     <Route path="/chat/:userid" element= {<Chat/>} />
+    <Route path="/info" element= {<Informacion/>} />
     
   </Routes>
   </main> 

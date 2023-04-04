@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import inicio from "../inicio.json";
 import {ArrowLeftIcon,InformationCircleIcon, EllipsisVerticalIcon,PlusIcon, EnvelopeIcon, PaperAirplaneIcon}from '@heroicons/react/24/solid';
@@ -7,77 +7,64 @@ import Informacion from "../components/informacion";
 
 function Chat () {
     const { userid } = useParams();
-    const [user, setUser]= useState([]);  
+    const [user, setUser]= useState();
+    const [open, setOpen] = useState(false) 
+    const test = () => setOpen(!open)
 
-    const chatUsuarios = (userid) => {
+    useEffect(() => {
+        const usuario = inicio.find(user => user.id == userid)
+        setUser(usuario)
+    }, [userid])
     
-    const usuario = inicio.find(user => user.id == userid)
-    setUser({
-      ...user,
-      usuario
-    });
-    console.log("%%%%");
-    console.log("userid: ",  userid);
-    console.log("user: ",  user);
-    console.log("%%%%");
-};
-chatUsuarios(userid);
- return (
     
-     <div class="w-screen h-screen bg-[#333F51] box-border box-content" >  
+    return (
+   <body>
+    {user && 
+    <div class="w-screen h-screen bg-[#333F51] box-border box-content" >  
      <header class="w-full h-20 bg-[#2A3342] flex justify-between p-2  sticky top-0 flex space-x-4 flex-wrap shadow-[#00000040] shadow-xl">
         <section class="flex flex-start ml-2">
             <div class="bg-[#333E50] p-4 rounded-lg flex py-5">
                     <Link to="/"><ArrowLeftIcon class="h-6 text-white"/></Link>
             </div>
-            {user.dmx}
         </section>
+        
             <section class="flex justify-end">
                 <div class="flex gap-4">
-                  <div class="bg-[#333E50]  rounded-lg pt-3 pb-3 flex ">
+                    <div class="bg-[#333E50]  rounded-lg pt-3 pb-3 flex ">
                         <button id="dropdownMenuIcon2" data-dropdown-toggle="dropdown" class="text-fuchsia-800 rounded-lg px-3" type="button"> 
-                            <InformationCircleIcon  className="h-8 w-8 " alt="info"/>
+                            <InformationCircleIcon  className="h-8 w-8 " alt="info" onClick={()=> setOpen(true)}/>
                             <section>
-                                <div>
-                                    <Informacion
-                                           key={user.id}
-                                           imagen={user.imagen}
-                                           alt={user.alt}
-                                           dmx={user.dmx}
-                                           funcion={user.funcion}
-                                           texto={user.texto}
-                                    />
-          
-                                </div>
+                            
                             </section>
                         </button>
-                  </div>
+                    </div>
                         <div class="flex justify-end rounded-lg ">
-                          <button id="dropdownMenuIconButton"  data-dropdown-toggle="dropdownDots" class="inline-flex items-center text-sm font-medium text-center rounded-lg" type="button"> 
-                              <EllipsisVerticalIcon className="h-8 w-8 text-white" alt="menu"/>
-                          </button>
-                              <div id="dropdownDots" class=" hidden  bg-[#333E50] ">
-                                  <ul class="py-2 mr-12 text-sm text-white" aria-labelledby="dropdownMenuIconButton">
-                                      <li>
-                                         <Link to="#"class="block px-4 py-2 text-white">opcion 1</Link>
-                                      </li>
-                                      <li>
+                            <button id="dropdownMenuIconButton"  data-dropdown-toggle="dropdownDots" class="inline-flex items-center text-sm font-medium text-center rounded-lg" type="button"> 
+                                <EllipsisVerticalIcon className="h-8 w-8 text-white" alt="menu"/>
+                            </button>
+                                <div id="dropdownDots" class=" hidden  bg-[#333E50] ">
+                                    <ul class="py-2 mr-12 text-sm text-white" aria-labelledby="dropdownMenuIconButton">
+                                        <li>
+                                            <Link to="#"class="block px-4 py-2 text-white">opcion 1</Link>
+                                        </li>
+                                        <li>
                                         <Link to="#" class="block px-4 py-2  ">opcion 2</Link>
-                                      </li>
-                                      <li>
+                                        </li>
+                                        <li>
                                         <Link to="#"class="block px-4 py-2  ">opcion 3</Link>
-                                      </li>
-                                      <li>
+                                        </li>
+                                        <li>
                                         <Link to="#" class="block px-4 py-2  ">opcion 4</Link>
-                                      </li>
-                                      <li>
+                                        </li>
+                                        <li>
                                         <Link to="#" class="block px-4 py-2 e">opcion 5</Link>
-                                      </li>
-                                  </ul>
-                              </div> 
-                      </div>  
+                                        </li>
+                                    </ul>
+                                </div> 
+                        </div>  
                 </div>   
-            </section>          
+            </section>
+                  
     </header>
     <div class="w-full bg-[#333F51] overflow-x-hidden">
         <section class="flex gap-4 mt-12 flex-col-2">
@@ -185,10 +172,25 @@ chatUsuarios(userid);
                     <PaperAirplaneIcon class="h-6 text-white" alt="img"/>
                 </Link>
                 </div></button>
+       
         </div>
     </footer>
+    <div className= {`${!open && "hidden"} bg-gray-800/50 h-full w-full fixed top-0 left-0 rigth-0`}>
+                                     <Informacion 
+                                        test ={test}
+                                        key={user.id}
+                                        imagen={user.imagen}
+                                        alt={user.alt}
+                                        dmx={user.dmx}
+                                        funcion={user.funcion}
+                                        texto={user.texto}
+                                    />
+                                </div>
+                            
      <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
-    </div>
+    </div> 
+        }
+    </body>
   )
 } 
 
